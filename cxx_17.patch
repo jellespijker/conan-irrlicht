@@ -1,0 +1,1553 @@
+diff -ur Irrlicht/bzip2/bzcompress.c Irrlicht/bzip2/bzcompress.c
+--- Irrlicht/bzip2/bzcompress.c	2020-08-24 15:43:17.636194790 +0200
++++ Irrlicht/bzip2/bzcompress.c	2020-08-24 16:42:52.279181878 +0200
+@@ -187,15 +187,15 @@
+             zPend = 0;
+          }
+          {
+-            register UChar  rtmp;
+-            register UChar* ryy_j;
+-            register UChar  rll_i;
++            UChar  rtmp;
++            UChar* ryy_j;
++            UChar  rll_i;
+             rtmp  = yy[1];
+             yy[1] = yy[0];
+             ryy_j = &(yy[1]);
+             rll_i = ll_i;
+             while ( rll_i != rtmp ) {
+-               register UChar rtmp2;
++               UChar rtmp2;
+                ryy_j++;
+                rtmp2  = rtmp;
+                rtmp   = *ryy_j;
+@@ -357,8 +357,8 @@
+ 
+          if (nGroups == 6 && 50 == ge-gs+1) {
+             /*--- fast track the common case ---*/
+-            register UInt32 cost01, cost23, cost45;
+-            register UInt16 icv;
++            UInt32 cost01, cost23, cost45;
++            UInt16 icv;
+             cost01 = cost23 = cost45 = 0;
+ 
+ #           define BZ_ITER(nn)                \
+diff -ur Irrlicht/CColorConverter.cpp Irrlicht/CColorConverter.cpp
+--- Irrlicht/CColorConverter.cpp	2020-08-24 15:43:17.646194811 +0200
++++ Irrlicht/CColorConverter.cpp	2020-08-24 16:42:52.199181482 +0200
+@@ -165,7 +165,7 @@
+ 		out += lineWidth * height;
+ 
+ 	u32 x;
+-	register u32 c;
++	u32 c;
+ 	for (u32 y=0; y < (u32) height; ++y)
+ 	{
+ 		if (flip)
+diff -ur Irrlicht/CMY3DHelper.h Irrlicht/CMY3DHelper.h
+--- Irrlicht/CMY3DHelper.h	2020-08-24 15:43:17.666194852 +0200
++++ Irrlicht/CMY3DHelper.h	2020-08-24 16:42:52.265848479 +0200
+@@ -269,7 +269,7 @@
+     unsigned char *out_buf, int out_buf_size)
+ {
+      // we start out with 3 repeating bytes
+-     register int len = 3;
++     int len = 3;
+ 
+      unsigned char ch;
+ 
+@@ -328,7 +328,7 @@
+ //-----------------------------------------------------------
+ void flush_outbuf(unsigned char *out_buf, int out_buf_size)
+ {
+-    register int pos=0;
++    int pos=0;
+ 
+     if(!outbuf_cnt)
+        return;        // nothing to do */
+diff -ur Irrlicht/jpeglib/cdjpeg.c Irrlicht/jpeglib/cdjpeg.c
+--- Irrlicht/jpeglib/cdjpeg.c	2020-08-24 15:43:17.696194914 +0200
++++ Irrlicht/jpeglib/cdjpeg.c	2020-08-24 16:42:52.435849322 +0200
+@@ -121,8 +121,8 @@
+ GLOBAL(boolean)
+ keymatch (char * arg, const char * keyword, int minchars)
+ {
+-  register int ca, ck;
+-  register int nmatched = 0;
++  int ca, ck;
++  int nmatched = 0;
+ 
+   while ((ca = *arg++) != '\0') {
+     if ((ck = *keyword++) == '\0')
+diff -ur Irrlicht/jpeglib/jcarith.c Irrlicht/jpeglib/jcarith.c
+--- Irrlicht/jpeglib/jcarith.c	2020-08-24 15:43:17.699528254 +0200
++++ Irrlicht/jpeglib/jcarith.c	2020-08-24 16:42:52.329182126 +0200
+@@ -218,10 +218,10 @@
+ LOCAL(void)
+ arith_encode (j_compress_ptr cinfo, unsigned char *st, int val) 
+ {
+-  register arith_entropy_ptr e = (arith_entropy_ptr) cinfo->entropy;
+-  register unsigned char nl, nm;
+-  register INT32 qe, temp;
+-  register int sv;
++  arith_entropy_ptr e = (arith_entropy_ptr) cinfo->entropy;
++  unsigned char nl, nm;
++  INT32 qe, temp;
++  int sv;
+ 
+   /* Fetch values from our compact representation of Table D.3(D.2):
+    * Qe values and probability estimation state machine
+diff -ur Irrlicht/jpeglib/jccolor.c Irrlicht/jpeglib/jccolor.c
+--- Irrlicht/jpeglib/jccolor.c	2020-08-24 15:43:17.699528254 +0200
++++ Irrlicht/jpeglib/jccolor.c	2020-08-24 16:42:52.295848628 +0200
+@@ -133,11 +133,11 @@
+ 		 JDIMENSION output_row, int num_rows)
+ {
+   my_cconvert_ptr cconvert = (my_cconvert_ptr) cinfo->cconvert;
+-  register int r, g, b;
+-  register INT32 * ctab = cconvert->rgb_ycc_tab;
+-  register JSAMPROW inptr;
+-  register JSAMPROW outptr0, outptr1, outptr2;
+-  register JDIMENSION col;
++  int r, g, b;
++  INT32 * ctab = cconvert->rgb_ycc_tab;
++  JSAMPROW inptr;
++  JSAMPROW outptr0, outptr1, outptr2;
++  JDIMENSION col;
+   JDIMENSION num_cols = cinfo->image_width;
+ 
+   while (--num_rows >= 0) {
+@@ -189,11 +189,11 @@
+ 		  JDIMENSION output_row, int num_rows)
+ {
+   my_cconvert_ptr cconvert = (my_cconvert_ptr) cinfo->cconvert;
+-  register int r, g, b;
+-  register INT32 * ctab = cconvert->rgb_ycc_tab;
+-  register JSAMPROW inptr;
+-  register JSAMPROW outptr;
+-  register JDIMENSION col;
++  int r, g, b;
++  INT32 * ctab = cconvert->rgb_ycc_tab;
++  JSAMPROW inptr;
++  JSAMPROW outptr;
++  JDIMENSION col;
+   JDIMENSION num_cols = cinfo->image_width;
+ 
+   while (--num_rows >= 0) {
+@@ -228,11 +228,11 @@
+ 		   JDIMENSION output_row, int num_rows)
+ {
+   my_cconvert_ptr cconvert = (my_cconvert_ptr) cinfo->cconvert;
+-  register int r, g, b;
+-  register INT32 * ctab = cconvert->rgb_ycc_tab;
+-  register JSAMPROW inptr;
+-  register JSAMPROW outptr0, outptr1, outptr2, outptr3;
+-  register JDIMENSION col;
++  int r, g, b;
++  INT32 * ctab = cconvert->rgb_ycc_tab;
++  JSAMPROW inptr;
++  JSAMPROW outptr0, outptr1, outptr2, outptr3;
++  JDIMENSION col;
+   JDIMENSION num_cols = cinfo->image_width;
+ 
+   while (--num_rows >= 0) {
+@@ -282,9 +282,9 @@
+ 		   JSAMPARRAY input_buf, JSAMPIMAGE output_buf,
+ 		   JDIMENSION output_row, int num_rows)
+ {
+-  register JSAMPROW inptr;
+-  register JSAMPROW outptr;
+-  register JDIMENSION col;
++  JSAMPROW inptr;
++  JSAMPROW outptr;
++  JDIMENSION col;
+   JDIMENSION num_cols = cinfo->image_width;
+   int instride = cinfo->input_components;
+ 
+@@ -311,9 +311,9 @@
+ 	     JSAMPARRAY input_buf, JSAMPIMAGE output_buf,
+ 	     JDIMENSION output_row, int num_rows)
+ {
+-  register JSAMPROW inptr;
+-  register JSAMPROW outptr0, outptr1, outptr2;
+-  register JDIMENSION col;
++  JSAMPROW inptr;
++  JSAMPROW outptr0, outptr1, outptr2;
++  JDIMENSION col;
+   JDIMENSION num_cols = cinfo->image_width;
+ 
+   while (--num_rows >= 0) {
+@@ -344,10 +344,10 @@
+ 	      JSAMPARRAY input_buf, JSAMPIMAGE output_buf,
+ 	      JDIMENSION output_row, int num_rows)
+ {
+-  register JSAMPROW inptr;
+-  register JSAMPROW outptr;
+-  register JDIMENSION col;
+-  register int ci;
++  JSAMPROW inptr;
++  JSAMPROW outptr;
++  JDIMENSION col;
++  int ci;
+   int nc = cinfo->num_components;
+   JDIMENSION num_cols = cinfo->image_width;
+ 
+diff -ur Irrlicht/jpeglib/jcdctmgr.c Irrlicht/jpeglib/jcdctmgr.c
+--- Irrlicht/jpeglib/jcdctmgr.c	2020-08-24 15:43:17.699528254 +0200
++++ Irrlicht/jpeglib/jcdctmgr.c	2020-08-24 16:42:52.342515526 +0200
+@@ -82,9 +82,9 @@
+     (*do_dct) (workspace, sample_data, start_col);
+ 
+     /* Quantize/descale the coefficients, and store into coef_blocks[] */
+-    { register DCTELEM temp, qval;
+-      register int i;
+-      register JCOEFPTR output_ptr = coef_blocks[bi];
++    { DCTELEM temp, qval;
++      int i;
++      JCOEFPTR output_ptr = coef_blocks[bi];
+ 
+       for (i = 0; i < DCTSIZE2; i++) {
+ 	qval = divisors[i];
+@@ -145,9 +145,9 @@
+     (*do_dct) (workspace, sample_data, start_col);
+ 
+     /* Quantize/descale the coefficients, and store into coef_blocks[] */
+-    { register FAST_FLOAT temp;
+-      register int i;
+-      register JCOEFPTR output_ptr = coef_blocks[bi];
++    { FAST_FLOAT temp;
++      int i;
++      JCOEFPTR output_ptr = coef_blocks[bi];
+ 
+       for (i = 0; i < DCTSIZE2; i++) {
+ 	/* Apply the quantization and scaling factor */
+diff -ur Irrlicht/jpeglib/jchuff.c Irrlicht/jpeglib/jchuff.c
+--- Irrlicht/jpeglib/jchuff.c	2020-08-24 15:43:17.699528254 +0200
++++ Irrlicht/jpeglib/jchuff.c	2020-08-24 16:42:52.302515327 +0200
+@@ -308,8 +308,8 @@
+ /* Emit some bits; return TRUE if successful, FALSE if must suspend */
+ {
+   /* This routine is heavily used, so it's worth coding tightly. */
+-  register INT32 put_buffer = (INT32) code;
+-  register int put_bits = state->cur.put_bits;
++  INT32 put_buffer = (INT32) code;
++  int put_bits = state->cur.put_bits;
+ 
+   /* if size is 0, caller used an invalid Huffman table entry */
+   if (size == 0)
+@@ -347,8 +347,8 @@
+ /* Emit some bits, unless we are in gather mode */
+ {
+   /* This routine is heavily used, so it's worth coding tightly. */
+-  register INT32 put_buffer = (INT32) code;
+-  register int put_bits = entropy->saved.put_bits;
++  INT32 put_buffer = (INT32) code;
++  int put_bits = entropy->saved.put_bits;
+ 
+   /* if size is 0, caller used an invalid Huffman table entry */
+   if (size == 0)
+@@ -458,7 +458,7 @@
+ LOCAL(void)
+ emit_eobrun (huff_entropy_ptr entropy)
+ {
+-  register int temp, nbits;
++  int temp, nbits;
+ 
+   if (entropy->EOBRUN > 0) {	/* if there is any pending EOBRUN */
+     temp = entropy->EOBRUN;
+@@ -541,8 +541,8 @@
+ encode_mcu_DC_first (j_compress_ptr cinfo, JBLOCKROW *MCU_data)
+ {
+   huff_entropy_ptr entropy = (huff_entropy_ptr) cinfo->entropy;
+-  register int temp, temp2;
+-  register int nbits;
++  int temp, temp2;
++  int nbits;
+   int blkn, ci;
+   int Al = cinfo->Al;
+   JBLOCKROW block;
+@@ -628,9 +628,9 @@
+ encode_mcu_AC_first (j_compress_ptr cinfo, JBLOCKROW *MCU_data)
+ {
+   huff_entropy_ptr entropy = (huff_entropy_ptr) cinfo->entropy;
+-  register int temp, temp2;
+-  register int nbits;
+-  register int r, k;
++  int temp, temp2;
++  int nbits;
++  int r, k;
+   int Se, Al;
+   const int * natural_order;
+   JBLOCKROW block;
+@@ -739,7 +739,7 @@
+ encode_mcu_DC_refine (j_compress_ptr cinfo, JBLOCKROW *MCU_data)
+ {
+   huff_entropy_ptr entropy = (huff_entropy_ptr) cinfo->entropy;
+-  register int temp;
++  int temp;
+   int blkn;
+   int Al = cinfo->Al;
+   JBLOCKROW block;
+@@ -786,8 +786,8 @@
+ encode_mcu_AC_refine (j_compress_ptr cinfo, JBLOCKROW *MCU_data)
+ {
+   huff_entropy_ptr entropy = (huff_entropy_ptr) cinfo->entropy;
+-  register int temp;
+-  register int r, k;
++  int temp;
++  int r, k;
+   int EOB;
+   char *BR_buffer;
+   unsigned int BR;
+@@ -916,9 +916,9 @@
+ encode_one_block (working_state * state, JCOEFPTR block, int last_dc_val,
+ 		  c_derived_tbl *dctbl, c_derived_tbl *actbl)
+ {
+-  register int temp, temp2;
+-  register int nbits;
+-  register int k, r, i;
++  int temp, temp2;
++  int nbits;
++  int k, r, i;
+   int Se = state->cinfo->lim_Se;
+   const int * natural_order = state->cinfo->natural_order;
+ 
+@@ -1122,9 +1122,9 @@
+ htest_one_block (j_compress_ptr cinfo, JCOEFPTR block, int last_dc_val,
+ 		 long dc_counts[], long ac_counts[])
+ {
+-  register int temp;
+-  register int nbits;
+-  register int k, r;
++  int temp;
++  int nbits;
++  int k, r;
+   int Se = cinfo->lim_Se;
+   const int * natural_order = cinfo->natural_order;
+   
+diff -ur Irrlicht/jpeglib/jcprepct.c Irrlicht/jpeglib/jcprepct.c
+--- Irrlicht/jpeglib/jcprepct.c	2020-08-24 15:43:17.702861594 +0200
++++ Irrlicht/jpeglib/jcprepct.c	2020-08-24 16:42:52.449182721 +0200
+@@ -106,7 +106,7 @@
+ expand_bottom_edge (JSAMPARRAY image_data, JDIMENSION num_cols,
+ 		    int input_rows, int output_rows)
+ {
+-  register int row;
++  int row;
+ 
+   for (row = input_rows; row < output_rows; row++) {
+     jcopy_sample_rows(image_data, input_rows-1, image_data, row,
+diff -ur Irrlicht/jpeglib/jcsample.c Irrlicht/jpeglib/jcsample.c
+--- Irrlicht/jpeglib/jcsample.c	2020-08-24 15:43:17.702861594 +0200
++++ Irrlicht/jpeglib/jcsample.c	2020-08-24 16:42:52.255848429 +0200
+@@ -96,9 +96,9 @@
+ expand_right_edge (JSAMPARRAY image_data, int num_rows,
+ 		   JDIMENSION input_cols, JDIMENSION output_cols)
+ {
+-  register JSAMPROW ptr;
+-  register JSAMPLE pixval;
+-  register int count;
++  JSAMPROW ptr;
++  JSAMPLE pixval;
++  int count;
+   int row;
+   int numcols = (int) (output_cols - input_cols);
+ 
+@@ -227,8 +227,8 @@
+   int inrow;
+   JDIMENSION outcol;
+   JDIMENSION output_cols = compptr->width_in_blocks * compptr->DCT_h_scaled_size;
+-  register JSAMPROW inptr, outptr;
+-  register int bias;
++  JSAMPROW inptr, outptr;
++  int bias;
+ 
+   /* Expand input data enough to let all the output samples be generated
+    * by the standard loop.  Special-casing padded output would be more
+@@ -264,8 +264,8 @@
+   int inrow, outrow;
+   JDIMENSION outcol;
+   JDIMENSION output_cols = compptr->width_in_blocks * compptr->DCT_h_scaled_size;
+-  register JSAMPROW inptr0, inptr1, outptr;
+-  register int bias;
++  JSAMPROW inptr0, inptr1, outptr;
++  int bias;
+ 
+   /* Expand input data enough to let all the output samples be generated
+    * by the standard loop.  Special-casing padded output would be more
+@@ -308,7 +308,7 @@
+   int inrow, outrow;
+   JDIMENSION colctr;
+   JDIMENSION output_cols = compptr->width_in_blocks * compptr->DCT_h_scaled_size;
+-  register JSAMPROW inptr0, inptr1, above_ptr, below_ptr, outptr;
++  JSAMPROW inptr0, inptr1, above_ptr, below_ptr, outptr;
+   INT32 membersum, neighsum, memberscale, neighscale;
+ 
+   /* Expand input data enough to let all the output samples be generated
+@@ -409,7 +409,7 @@
+   int inrow;
+   JDIMENSION colctr;
+   JDIMENSION output_cols = compptr->width_in_blocks * compptr->DCT_h_scaled_size;
+-  register JSAMPROW inptr, above_ptr, below_ptr, outptr;
++  JSAMPROW inptr, above_ptr, below_ptr, outptr;
+   INT32 membersum, neighsum, memberscale, neighscale;
+   int colsum, lastcolsum, nextcolsum;
+ 
+diff -ur Irrlicht/jpeglib/jdarith.c Irrlicht/jpeglib/jdarith.c
+--- Irrlicht/jpeglib/jdarith.c	2020-08-24 15:43:17.702861594 +0200
++++ Irrlicht/jpeglib/jdarith.c	2020-08-24 16:42:52.415849223 +0200
+@@ -105,10 +105,10 @@
+ LOCAL(int)
+ arith_decode (j_decompress_ptr cinfo, unsigned char *st)
+ {
+-  register arith_entropy_ptr e = (arith_entropy_ptr) cinfo->entropy;
+-  register unsigned char nl, nm;
+-  register INT32 qe, temp;
+-  register int sv, data;
++  arith_entropy_ptr e = (arith_entropy_ptr) cinfo->entropy;
++  unsigned char nl, nm;
++  INT32 qe, temp;
++  int sv, data;
+ 
+   /* Renormalization & data input per section D.2.6 */
+   while (e->a < 0x8000L) {
+diff -ur Irrlicht/jpeglib/jdcolor.c Irrlicht/jpeglib/jdcolor.c
+--- Irrlicht/jpeglib/jdcolor.c	2020-08-24 15:43:17.702861594 +0200
++++ Irrlicht/jpeglib/jdcolor.c	2020-08-24 16:42:52.349182225 +0200
+@@ -143,17 +143,17 @@
+ 		 JSAMPARRAY output_buf, int num_rows)
+ {
+   my_cconvert_ptr cconvert = (my_cconvert_ptr) cinfo->cconvert;
+-  register int y, cb, cr;
+-  register JSAMPROW outptr;
+-  register JSAMPROW inptr0, inptr1, inptr2;
+-  register JDIMENSION col;
++  int y, cb, cr;
++  JSAMPROW outptr;
++  JSAMPROW inptr0, inptr1, inptr2;
++  JDIMENSION col;
+   JDIMENSION num_cols = cinfo->output_width;
+   /* copy these pointers into registers if possible */
+-  register JSAMPLE * range_limit = cinfo->sample_range_limit;
+-  register int * Crrtab = cconvert->Cr_r_tab;
+-  register int * Cbbtab = cconvert->Cb_b_tab;
+-  register INT32 * Crgtab = cconvert->Cr_g_tab;
+-  register INT32 * Cbgtab = cconvert->Cb_g_tab;
++  JSAMPLE * range_limit = cinfo->sample_range_limit;
++  int * Crrtab = cconvert->Cr_r_tab;
++  int * Cbbtab = cconvert->Cb_b_tab;
++  INT32 * Crgtab = cconvert->Cr_g_tab;
++  INT32 * Cbgtab = cconvert->Cb_g_tab;
+   SHIFT_TEMPS
+ 
+   while (--num_rows >= 0) {
+@@ -215,11 +215,11 @@
+ 		  JSAMPARRAY output_buf, int num_rows)
+ {
+   my_cconvert_ptr cconvert = (my_cconvert_ptr) cinfo->cconvert;
+-  register int r, g, b;
+-  register INT32 * ctab = cconvert->rgb_y_tab;
+-  register JSAMPROW outptr;
+-  register JSAMPROW inptr0, inptr1, inptr2;
+-  register JDIMENSION col;
++  int r, g, b;
++  INT32 * ctab = cconvert->rgb_y_tab;
++  JSAMPROW outptr;
++  JSAMPROW inptr0, inptr1, inptr2;
++  JDIMENSION col;
+   JDIMENSION num_cols = cinfo->output_width;
+ 
+   while (--num_rows >= 0) {
+@@ -251,9 +251,9 @@
+ 	     JSAMPIMAGE input_buf, JDIMENSION input_row,
+ 	     JSAMPARRAY output_buf, int num_rows)
+ {
+-  register JSAMPROW outptr;
+-  register JSAMPROW inptr0, inptr1, inptr2;
+-  register JDIMENSION col;
++  JSAMPROW outptr;
++  JSAMPROW inptr0, inptr1, inptr2;
++  JDIMENSION col;
+   JDIMENSION num_cols = cinfo->output_width;
+ 
+   while (--num_rows >= 0) {
+@@ -283,9 +283,9 @@
+ 	      JSAMPIMAGE input_buf, JDIMENSION input_row,
+ 	      JSAMPARRAY output_buf, int num_rows)
+ {
+-  register JSAMPROW inptr, outptr;
+-  register JDIMENSION count;
+-  register int num_components = cinfo->num_components;
++  JSAMPROW inptr, outptr;
++  JDIMENSION count;
++  int num_components = cinfo->num_components;
+   JDIMENSION num_cols = cinfo->output_width;
+   int ci;
+ 
+@@ -331,8 +331,8 @@
+ 		  JSAMPIMAGE input_buf, JDIMENSION input_row,
+ 		  JSAMPARRAY output_buf, int num_rows)
+ {
+-  register JSAMPROW inptr, outptr;
+-  register JDIMENSION col;
++  JSAMPROW inptr, outptr;
++  JDIMENSION col;
+   JDIMENSION num_cols = cinfo->output_width;
+ 
+   while (--num_rows >= 0) {
+@@ -360,17 +360,17 @@
+ 		   JSAMPARRAY output_buf, int num_rows)
+ {
+   my_cconvert_ptr cconvert = (my_cconvert_ptr) cinfo->cconvert;
+-  register int y, cb, cr;
+-  register JSAMPROW outptr;
+-  register JSAMPROW inptr0, inptr1, inptr2, inptr3;
+-  register JDIMENSION col;
++  int y, cb, cr;
++  JSAMPROW outptr;
++  JSAMPROW inptr0, inptr1, inptr2, inptr3;
++  JDIMENSION col;
+   JDIMENSION num_cols = cinfo->output_width;
+   /* copy these pointers into registers if possible */
+-  register JSAMPLE * range_limit = cinfo->sample_range_limit;
+-  register int * Crrtab = cconvert->Cr_r_tab;
+-  register int * Cbbtab = cconvert->Cb_b_tab;
+-  register INT32 * Crgtab = cconvert->Cr_g_tab;
+-  register INT32 * Cbgtab = cconvert->Cb_g_tab;
++  JSAMPLE * range_limit = cinfo->sample_range_limit;
++  int * Crrtab = cconvert->Cr_r_tab;
++  int * Cbbtab = cconvert->Cb_b_tab;
++  INT32 * Crgtab = cconvert->Cr_g_tab;
++  INT32 * Cbgtab = cconvert->Cb_g_tab;
+   SHIFT_TEMPS
+ 
+   while (--num_rows >= 0) {
+diff -ur Irrlicht/jpeglib/jdhuff.c Irrlicht/jpeglib/jdhuff.c
+--- Irrlicht/jpeglib/jdhuff.c	2020-08-24 15:43:17.702861594 +0200
++++ Irrlicht/jpeglib/jdhuff.c	2020-08-24 16:42:52.379182374 +0200
+@@ -97,8 +97,8 @@
+ 
+ /* Macros to declare and load/save bitread local variables. */
+ #define BITREAD_STATE_VARS  \
+-	register bit_buf_type get_buffer;  \
+-	register int bits_left;  \
++	bit_buf_type get_buffer;  \
++	int bits_left;  \
+ 	bitread_working_state br_state
+ 
+ #define BITREAD_LOAD_STATE(cinfop,permstate)  \
+@@ -166,7 +166,7 @@
+  */
+ 
+ #define HUFF_DECODE(result,state,htbl,failaction,slowlabel) \
+-{ register int nb, look; \
++{ int nb, look; \
+   if (bits_left < HUFF_LOOKAHEAD) { \
+     if (! jpeg_fill_bit_buffer(&state,get_buffer,bits_left, 0)) {failaction;} \
+     get_buffer = state.get_buffer; bits_left = state.bits_left; \
+@@ -463,13 +463,13 @@
+ 
+ LOCAL(boolean)
+ jpeg_fill_bit_buffer (bitread_working_state * state,
+-		      register bit_buf_type get_buffer, register int bits_left,
++		      bit_buf_type get_buffer, int bits_left,
+ 		      int nbits)
+ /* Load up the bit buffer to a depth of at least nbits */
+ {
+   /* Copy heavily used state fields into locals (hopefully registers) */
+-  register const JOCTET * next_input_byte = state->next_input_byte;
+-  register size_t bytes_in_buffer = state->bytes_in_buffer;
++  const JOCTET * next_input_byte = state->next_input_byte;
++  size_t bytes_in_buffer = state->bytes_in_buffer;
+   j_decompress_ptr cinfo = state->cinfo;
+ 
+   /* Attempt to load at least MIN_GET_BITS bits into get_buffer. */
+@@ -478,7 +478,7 @@
+ 
+   if (cinfo->unread_marker == 0) {	/* cannot advance past a marker */
+     while (bits_left < MIN_GET_BITS) {
+-      register int c;
++      int c;
+ 
+       /* Attempt to read a byte */
+       if (bytes_in_buffer == 0) {
+@@ -590,11 +590,11 @@
+ 
+ LOCAL(int)
+ jpeg_huff_decode (bitread_working_state * state,
+-		  register bit_buf_type get_buffer, register int bits_left,
++		  bit_buf_type get_buffer, int bits_left,
+ 		  d_derived_tbl * htbl, int min_bits)
+ {
+-  register int l = min_bits;
+-  register INT32 code;
++  int l = min_bits;
++  INT32 code;
+ 
+   /* HUFF_DECODE has determined that the code is at least min_bits */
+   /* bits long, so fetch that many bits in one swoop. */
+@@ -696,7 +696,7 @@
+ {   
+   huff_entropy_ptr entropy = (huff_entropy_ptr) cinfo->entropy;
+   int Al = cinfo->Al;
+-  register int s, r;
++  int s, r;
+   int blkn, ci;
+   JBLOCKROW block;
+   BITREAD_STATE_VARS;
+@@ -766,7 +766,7 @@
+ decode_mcu_AC_first (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
+ {   
+   huff_entropy_ptr entropy = (huff_entropy_ptr) cinfo->entropy;
+-  register int s, k, r;
++  int s, k, r;
+   unsigned int EOBRUN;
+   int Se, Al;
+   const int * natural_order;
+@@ -904,7 +904,7 @@
+ decode_mcu_AC_refine (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
+ {   
+   huff_entropy_ptr entropy = (huff_entropy_ptr) cinfo->entropy;
+-  register int s, k, r;
++  int s, k, r;
+   unsigned int EOBRUN;
+   int Se, p1, m1;
+   const int * natural_order;
+@@ -1088,7 +1088,7 @@
+     for (blkn = 0; blkn < cinfo->blocks_in_MCU; blkn++) {
+       JBLOCKROW block = MCU_data[blkn];
+       d_derived_tbl * htbl;
+-      register int s, k, r;
++      int s, k, r;
+       int coef_limit, ci;
+ 
+       /* Decode a single block's worth of coefficients */
+@@ -1212,7 +1212,7 @@
+     for (blkn = 0; blkn < cinfo->blocks_in_MCU; blkn++) {
+       JBLOCKROW block = MCU_data[blkn];
+       d_derived_tbl * htbl;
+-      register int s, k, r;
++      int s, k, r;
+       int coef_limit, ci;
+ 
+       /* Decode a single block's worth of coefficients */
+diff -ur Irrlicht/jpeglib/jdmerge.c Irrlicht/jpeglib/jdmerge.c
+--- Irrlicht/jpeglib/jdmerge.c	2020-08-24 15:43:17.706194935 +0200
++++ Irrlicht/jpeglib/jdmerge.c	2020-08-24 16:42:52.289181928 +0200
+@@ -228,13 +228,13 @@
+ 		      JSAMPARRAY output_buf)
+ {
+   my_upsample_ptr upsample = (my_upsample_ptr) cinfo->upsample;
+-  register int y, cred, cgreen, cblue;
++  int y, cred, cgreen, cblue;
+   int cb, cr;
+-  register JSAMPROW outptr;
++  JSAMPROW outptr;
+   JSAMPROW inptr0, inptr1, inptr2;
+   JDIMENSION col;
+   /* copy these pointers into registers if possible */
+-  register JSAMPLE * range_limit = cinfo->sample_range_limit;
++  JSAMPLE * range_limit = cinfo->sample_range_limit;
+   int * Crrtab = upsample->Cr_r_tab;
+   int * Cbbtab = upsample->Cb_b_tab;
+   INT32 * Crgtab = upsample->Cr_g_tab;
+@@ -290,13 +290,13 @@
+ 		      JSAMPARRAY output_buf)
+ {
+   my_upsample_ptr upsample = (my_upsample_ptr) cinfo->upsample;
+-  register int y, cred, cgreen, cblue;
++  int y, cred, cgreen, cblue;
+   int cb, cr;
+-  register JSAMPROW outptr0, outptr1;
++  JSAMPROW outptr0, outptr1;
+   JSAMPROW inptr00, inptr01, inptr1, inptr2;
+   JDIMENSION col;
+   /* copy these pointers into registers if possible */
+-  register JSAMPLE * range_limit = cinfo->sample_range_limit;
++  JSAMPLE * range_limit = cinfo->sample_range_limit;
+   int * Crrtab = upsample->Cr_r_tab;
+   int * Cbbtab = upsample->Cb_b_tab;
+   INT32 * Crgtab = upsample->Cr_g_tab;
+diff -ur Irrlicht/jpeglib/jdsample.c Irrlicht/jpeglib/jdsample.c
+--- Irrlicht/jpeglib/jdsample.c	2020-08-24 15:43:17.706194935 +0200
++++ Irrlicht/jpeglib/jdsample.c	2020-08-24 16:42:52.335848825 +0200
+@@ -192,9 +192,9 @@
+ {
+   my_upsample_ptr upsample = (my_upsample_ptr) cinfo->upsample;
+   JSAMPARRAY output_data = *output_data_ptr;
+-  register JSAMPROW inptr, outptr;
+-  register JSAMPLE invalue;
+-  register int h;
++  JSAMPROW inptr, outptr;
++  JSAMPLE invalue;
++  int h;
+   JSAMPROW outend;
+   int h_expand, v_expand;
+   int inrow, outrow;
+@@ -235,8 +235,8 @@
+ 	       JSAMPARRAY input_data, JSAMPARRAY * output_data_ptr)
+ {
+   JSAMPARRAY output_data = *output_data_ptr;
+-  register JSAMPROW inptr, outptr;
+-  register JSAMPLE invalue;
++  JSAMPROW inptr, outptr;
++  JSAMPLE invalue;
+   JSAMPROW outend;
+   int outrow;
+ 
+@@ -263,8 +263,8 @@
+ 	       JSAMPARRAY input_data, JSAMPARRAY * output_data_ptr)
+ {
+   JSAMPARRAY output_data = *output_data_ptr;
+-  register JSAMPROW inptr, outptr;
+-  register JSAMPLE invalue;
++  JSAMPROW inptr, outptr;
++  JSAMPLE invalue;
+   JSAMPROW outend;
+   int inrow, outrow;
+ 
+diff -ur Irrlicht/jpeglib/jquant1.c Irrlicht/jpeglib/jquant1.c
+--- Irrlicht/jpeglib/jquant1.c	2020-08-24 15:43:17.709528275 +0200
++++ Irrlicht/jpeglib/jquant1.c	2020-08-24 16:42:52.372515674 +0200
+@@ -463,12 +463,12 @@
+ {
+   my_cquantize_ptr cquantize = (my_cquantize_ptr) cinfo->cquantize;
+   JSAMPARRAY colorindex = cquantize->colorindex;
+-  register int pixcode, ci;
+-  register JSAMPROW ptrin, ptrout;
++  int pixcode, ci;
++  JSAMPROW ptrin, ptrout;
+   int row;
+   JDIMENSION col;
+   JDIMENSION width = cinfo->output_width;
+-  register int nc = cinfo->out_color_components;
++  int nc = cinfo->out_color_components;
+ 
+   for (row = 0; row < num_rows; row++) {
+     ptrin = input_buf[row];
+@@ -490,8 +490,8 @@
+ /* Fast path for out_color_components==3, no dithering */
+ {
+   my_cquantize_ptr cquantize = (my_cquantize_ptr) cinfo->cquantize;
+-  register int pixcode;
+-  register JSAMPROW ptrin, ptrout;
++  int pixcode;
++  JSAMPROW ptrin, ptrout;
+   JSAMPROW colorindex0 = cquantize->colorindex[0];
+   JSAMPROW colorindex1 = cquantize->colorindex[1];
+   JSAMPROW colorindex2 = cquantize->colorindex[2];
+@@ -518,8 +518,8 @@
+ /* General case, with ordered dithering */
+ {
+   my_cquantize_ptr cquantize = (my_cquantize_ptr) cinfo->cquantize;
+-  register JSAMPROW input_ptr;
+-  register JSAMPROW output_ptr;
++  JSAMPROW input_ptr;
++  JSAMPROW output_ptr;
+   JSAMPROW colorindex_ci;
+   int * dither;			/* points to active row of dither matrix */
+   int row_index, col_index;	/* current indexes into dither matrix */
+@@ -568,9 +568,9 @@
+ /* Fast path for out_color_components==3, with ordered dithering */
+ {
+   my_cquantize_ptr cquantize = (my_cquantize_ptr) cinfo->cquantize;
+-  register int pixcode;
+-  register JSAMPROW input_ptr;
+-  register JSAMPROW output_ptr;
++  int pixcode;
++  JSAMPROW input_ptr;
++  JSAMPROW output_ptr;
+   JSAMPROW colorindex0 = cquantize->colorindex[0];
+   JSAMPROW colorindex1 = cquantize->colorindex[1];
+   JSAMPROW colorindex2 = cquantize->colorindex[2];
+@@ -613,14 +613,14 @@
+ /* General case, with Floyd-Steinberg dithering */
+ {
+   my_cquantize_ptr cquantize = (my_cquantize_ptr) cinfo->cquantize;
+-  register LOCFSERROR cur;	/* current error or pixel value */
++  LOCFSERROR cur;	/* current error or pixel value */
+   LOCFSERROR belowerr;		/* error for pixel below cur */
+   LOCFSERROR bpreverr;		/* error for below/prev col */
+   LOCFSERROR bnexterr;		/* error for below/next col */
+   LOCFSERROR delta;
+-  register FSERRPTR errorptr;	/* => fserrors[] at column before current */
+-  register JSAMPROW input_ptr;
+-  register JSAMPROW output_ptr;
++  FSERRPTR errorptr;	/* => fserrors[] at column before current */
++  JSAMPROW input_ptr;
++  JSAMPROW output_ptr;
+   JSAMPROW colorindex_ci;
+   JSAMPROW colormap_ci;
+   int pixcode;
+diff -ur Irrlicht/jpeglib/jquant2.c Irrlicht/jpeglib/jquant2.c
+--- Irrlicht/jpeglib/jquant2.c	2020-08-24 15:43:17.709528275 +0200
++++ Irrlicht/jpeglib/jquant2.c	2020-08-24 16:42:52.409182522 +0200
+@@ -226,9 +226,9 @@
+ 		  JSAMPARRAY output_buf, int num_rows)
+ {
+   my_cquantize_ptr cquantize = (my_cquantize_ptr) cinfo->cquantize;
+-  register JSAMPROW ptr;
+-  register histptr histp;
+-  register hist3d histogram = cquantize->histogram;
++  JSAMPROW ptr;
++  histptr histp;
++  hist3d histogram = cquantize->histogram;
+   int row;
+   JDIMENSION col;
+   JDIMENSION width = cinfo->output_width;
+@@ -275,9 +275,9 @@
+ /* Find the splittable box with the largest color population */
+ /* Returns NULL if no splittable boxes remain */
+ {
+-  register boxptr boxp;
+-  register int i;
+-  register long maxc = 0;
++  boxptr boxp;
++  int i;
++  long maxc = 0;
+   boxptr which = NULL;
+   
+   for (i = 0, boxp = boxlist; i < numboxes; i++, boxp++) {
+@@ -295,9 +295,9 @@
+ /* Find the splittable box with the largest (scaled) volume */
+ /* Returns NULL if no splittable boxes remain */
+ {
+-  register boxptr boxp;
+-  register int i;
+-  register INT32 maxv = 0;
++  boxptr boxp;
++  int i;
++  INT32 maxv = 0;
+   boxptr which = NULL;
+   
+   for (i = 0, boxp = boxlist; i < numboxes; i++, boxp++) {
+@@ -428,7 +428,7 @@
+ {
+   int n,lb;
+   int c0,c1,c2,cmax;
+-  register boxptr b1,b2;
++  boxptr b1,b2;
+ 
+   while (numboxes < desired_colors) {
+     /* Select box to split.
+@@ -784,12 +784,12 @@
+ {
+   int ic0, ic1, ic2;
+   int i, icolor;
+-  register INT32 * bptr;	/* pointer into bestdist[] array */
++  INT32 * bptr;	/* pointer into bestdist[] array */
+   JSAMPLE * cptr;		/* pointer into bestcolor[] array */
+   INT32 dist0, dist1;		/* initial distance values */
+-  register INT32 dist2;		/* current distance in inner loop */
++  INT32 dist2;		/* current distance in inner loop */
+   INT32 xx0, xx1;		/* distance increments */
+-  register INT32 xx2;
++  INT32 xx2;
+   INT32 inc0, inc1, inc2;	/* initial values for increments */
+   /* This array holds the distance to the nearest-so-far color for each cell */
+   INT32 bestdist[BOX_C0_ELEMS * BOX_C1_ELEMS * BOX_C2_ELEMS];
+@@ -862,8 +862,8 @@
+   hist3d histogram = cquantize->histogram;
+   int minc0, minc1, minc2;	/* lower left corner of update box */
+   int ic0, ic1, ic2;
+-  register JSAMPLE * cptr;	/* pointer into bestcolor[] array */
+-  register histptr cachep;	/* pointer into main cache array */
++  JSAMPLE * cptr;	/* pointer into bestcolor[] array */
++  histptr cachep;	/* pointer into main cache array */
+   /* This array lists the candidate colormap indexes. */
+   JSAMPLE colorlist[MAXNUMCOLORS];
+   int numcolors;		/* number of candidate colors */
+@@ -919,9 +919,9 @@
+ {
+   my_cquantize_ptr cquantize = (my_cquantize_ptr) cinfo->cquantize;
+   hist3d histogram = cquantize->histogram;
+-  register JSAMPROW inptr, outptr;
+-  register histptr cachep;
+-  register int c0, c1, c2;
++  JSAMPROW inptr, outptr;
++  histptr cachep;
++  int c0, c1, c2;
+   int row;
+   JDIMENSION col;
+   JDIMENSION width = cinfo->output_width;
+@@ -953,10 +953,10 @@
+ {
+   my_cquantize_ptr cquantize = (my_cquantize_ptr) cinfo->cquantize;
+   hist3d histogram = cquantize->histogram;
+-  register LOCFSERROR cur0, cur1, cur2;	/* current error or pixel value */
++  LOCFSERROR cur0, cur1, cur2;	/* current error or pixel value */
+   LOCFSERROR belowerr0, belowerr1, belowerr2; /* error for pixel below cur */
+   LOCFSERROR bpreverr0, bpreverr1, bpreverr2; /* error for below/prev col */
+-  register FSERRPTR errorptr;	/* => fserrors[] at column before current */
++  FSERRPTR errorptr;	/* => fserrors[] at column before current */
+   JSAMPROW inptr;		/* => current input pixel */
+   JSAMPROW outptr;		/* => current output pixel */
+   histptr cachep;
+@@ -1031,7 +1031,7 @@
+       if (*cachep == 0)
+ 	fill_inverse_cmap(cinfo, cur0>>C0_SHIFT,cur1>>C1_SHIFT,cur2>>C2_SHIFT);
+       /* Now emit the colormap index for this cell */
+-      { register int pixcode = *cachep - 1;
++      { int pixcode = *cachep - 1;
+ 	*outptr = (JSAMPLE) pixcode;
+ 	/* Compute representation error for this pixel */
+ 	cur0 -= GETJSAMPLE(colormap0[pixcode]);
+@@ -1042,7 +1042,7 @@
+        * Add these into the running sums, and simultaneously shift the
+        * next-line error sums left by 1 column.
+        */
+-      { register LOCFSERROR bnexterr, delta;
++      { LOCFSERROR bnexterr, delta;
+ 
+ 	bnexterr = cur0;	/* Process component 0 */
+ 	delta = cur0 * 2;
+diff -ur Irrlicht/jpeglib/jutils.c Irrlicht/jpeglib/jutils.c
+--- Irrlicht/jpeglib/jutils.c	2020-08-24 15:43:17.709528275 +0200
++++ Irrlicht/jpeglib/jutils.c	2020-08-24 16:42:52.239181679 +0200
+@@ -162,8 +162,8 @@
+ /* Zero out a chunk of FAR memory. */
+ /* This might be sample-array data, block-array data, or alloc_large data. */
+ {
+-  register char FAR * ptr = (char FAR *) target;
+-  register size_t count;
++  char FAR * ptr = (char FAR *) target;
++  size_t count;
+ 
+   for (count = bytestozero; count > 0; count--) {
+     *ptr++ = 0;
+@@ -183,13 +183,13 @@
+  * The source and destination arrays must be at least as wide as num_cols.
+  */
+ {
+-  register JSAMPROW inptr, outptr;
++  JSAMPROW inptr, outptr;
+ #ifdef FMEMCOPY
+-  register size_t count = (size_t) (num_cols * SIZEOF(JSAMPLE));
++  size_t count = (size_t) (num_cols * SIZEOF(JSAMPLE));
+ #else
+-  register JDIMENSION count;
++  JDIMENSION count;
+ #endif
+-  register int row;
++  int row;
+ 
+   input_array += source_row;
+   output_array += dest_row;
+@@ -215,8 +215,8 @@
+ #ifdef FMEMCOPY
+   FMEMCOPY(output_row, input_row, num_blocks * (DCTSIZE2 * SIZEOF(JCOEF)));
+ #else
+-  register JCOEFPTR inptr, outptr;
+-  register long count;
++  JCOEFPTR inptr, outptr;
++  long count;
+ 
+   inptr = (JCOEFPTR) input_row;
+   outptr = (JCOEFPTR) output_row;
+diff -ur Irrlicht/jpeglib/rdbmp.c Irrlicht/jpeglib/rdbmp.c
+--- Irrlicht/jpeglib/rdbmp.c	2020-08-24 15:43:17.716194956 +0200
++++ Irrlicht/jpeglib/rdbmp.c	2020-08-24 16:42:52.392515774 +0200
+@@ -69,8 +69,8 @@
+ read_byte (bmp_source_ptr sinfo)
+ /* Read next byte from BMP file */
+ {
+-  register FILE *infile = sinfo->pub.input_file;
+-  register int c;
++  FILE *infile = sinfo->pub.input_file;
++  int c;
+ 
+   if ((c = getc(infile)) == EOF)
+     ERREXIT(sinfo->cinfo, JERR_INPUT_EOF);
+@@ -121,11 +121,11 @@
+ /* This version is for reading 8-bit colormap indexes */
+ {
+   bmp_source_ptr source = (bmp_source_ptr) sinfo;
+-  register JSAMPARRAY colormap = source->colormap;
++  JSAMPARRAY colormap = source->colormap;
+   JSAMPARRAY image_ptr;
+-  register int t;
+-  register JSAMPROW inptr, outptr;
+-  register JDIMENSION col;
++  int t;
++  JSAMPROW inptr, outptr;
++  JDIMENSION col;
+ 
+   /* Fetch next row from virtual array */
+   source->source_row--;
+@@ -153,8 +153,8 @@
+ {
+   bmp_source_ptr source = (bmp_source_ptr) sinfo;
+   JSAMPARRAY image_ptr;
+-  register JSAMPROW inptr, outptr;
+-  register JDIMENSION col;
++  JSAMPROW inptr, outptr;
++  JDIMENSION col;
+ 
+   /* Fetch next row from virtual array */
+   source->source_row--;
+@@ -184,8 +184,8 @@
+ {
+   bmp_source_ptr source = (bmp_source_ptr) sinfo;
+   JSAMPARRAY image_ptr;
+-  register JSAMPROW inptr, outptr;
+-  register JDIMENSION col;
++  JSAMPROW inptr, outptr;
++  JDIMENSION col;
+ 
+   /* Fetch next row from virtual array */
+   source->source_row--;
+@@ -219,9 +219,9 @@
+ preload_image (j_compress_ptr cinfo, cjpeg_source_ptr sinfo)
+ {
+   bmp_source_ptr source = (bmp_source_ptr) sinfo;
+-  register FILE *infile = source->pub.input_file;
+-  register int c;
+-  register JSAMPROW out_ptr;
++  FILE *infile = source->pub.input_file;
++  int c;
++  JSAMPROW out_ptr;
+   JSAMPARRAY image_ptr;
+   JDIMENSION row, col;
+   cd_progress_ptr progress = (cd_progress_ptr) cinfo->progress;
+diff -ur Irrlicht/jpeglib/rdcolmap.c Irrlicht/jpeglib/rdcolmap.c
+--- Irrlicht/jpeglib/rdcolmap.c	2020-08-24 15:43:17.716194956 +0200
++++ Irrlicht/jpeglib/rdcolmap.c	2020-08-24 16:42:52.355848925 +0200
+@@ -122,7 +122,7 @@
+ /* Read next char, skipping over any comments */
+ /* A comment/newline sequence is returned as a newline */
+ {
+-  register int ch;
++  int ch;
+   
+   ch = getc(infile);
+   if (ch == '#') {
+@@ -141,8 +141,8 @@
+ /* Note that on a 16-bit-int machine, only values up to 64k can be read. */
+ /* This should not be a problem in practice. */
+ {
+-  register int ch;
+-  register unsigned int val;
++  int ch;
++  unsigned int val;
+   
+   /* Skip any leading whitespace */
+   do {
+diff -ur Irrlicht/jpeglib/rdjpgcom.c Irrlicht/jpeglib/rdjpgcom.c
+--- Irrlicht/jpeglib/rdjpgcom.c	2020-08-24 15:43:17.716194956 +0200
++++ Irrlicht/jpeglib/rdjpgcom.c	2020-08-24 16:42:52.225848280 +0200
+@@ -427,8 +427,8 @@
+ /* keyword is the constant keyword (must be lower case already), */
+ /* minchars is length of minimum legal abbreviation. */
+ {
+-  register int ca, ck;
+-  register int nmatched = 0;
++  int ca, ck;
++  int nmatched = 0;
+ 
+   while ((ca = *arg++) != '\0') {
+     if ((ck = *keyword++) == '\0')
+diff -ur Irrlicht/jpeglib/rdppm.c Irrlicht/jpeglib/rdppm.c
+--- Irrlicht/jpeglib/rdppm.c	2020-08-24 15:43:17.716194956 +0200
++++ Irrlicht/jpeglib/rdppm.c	2020-08-24 16:42:52.362515625 +0200
+@@ -86,7 +86,7 @@
+ /* Read next char, skipping over any comments */
+ /* A comment/newline sequence is returned as a newline */
+ {
+-  register int ch;
++  int ch;
+ 
+   ch = getc(infile);
+   if (ch == '#') {
+@@ -105,8 +105,8 @@
+ /* Note that on a 16-bit-int machine, only values up to 64k can be read. */
+ /* This should not be a problem in practice. */
+ {
+-  register int ch;
+-  register unsigned int val;
++  int ch;
++  unsigned int val;
+ 
+   /* Skip any leading whitespace */
+   do {
+@@ -144,8 +144,8 @@
+ {
+   ppm_source_ptr source = (ppm_source_ptr) sinfo;
+   FILE * infile = source->pub.input_file;
+-  register JSAMPROW ptr;
+-  register JSAMPLE *rescale = source->rescale;
++  JSAMPROW ptr;
++  JSAMPLE *rescale = source->rescale;
+   JDIMENSION col;
+ 
+   ptr = source->pub.buffer[0];
+@@ -162,8 +162,8 @@
+ {
+   ppm_source_ptr source = (ppm_source_ptr) sinfo;
+   FILE * infile = source->pub.input_file;
+-  register JSAMPROW ptr;
+-  register JSAMPLE *rescale = source->rescale;
++  JSAMPROW ptr;
++  JSAMPLE *rescale = source->rescale;
+   JDIMENSION col;
+ 
+   ptr = source->pub.buffer[0];
+@@ -181,9 +181,9 @@
+ /* This version is for reading raw-byte-format PGM files with any maxval */
+ {
+   ppm_source_ptr source = (ppm_source_ptr) sinfo;
+-  register JSAMPROW ptr;
+-  register U_CHAR * bufferptr;
+-  register JSAMPLE *rescale = source->rescale;
++  JSAMPROW ptr;
++  U_CHAR * bufferptr;
++  JSAMPLE *rescale = source->rescale;
+   JDIMENSION col;
+ 
+   if (! ReadOK(source->pub.input_file, source->iobuffer, source->buffer_width))
+@@ -202,9 +202,9 @@
+ /* This version is for reading raw-byte-format PPM files with any maxval */
+ {
+   ppm_source_ptr source = (ppm_source_ptr) sinfo;
+-  register JSAMPROW ptr;
+-  register U_CHAR * bufferptr;
+-  register JSAMPLE *rescale = source->rescale;
++  JSAMPROW ptr;
++  U_CHAR * bufferptr;
++  JSAMPLE *rescale = source->rescale;
+   JDIMENSION col;
+ 
+   if (! ReadOK(source->pub.input_file, source->iobuffer, source->buffer_width))
+@@ -240,9 +240,9 @@
+ /* This version is for reading raw-word-format PGM files with any maxval */
+ {
+   ppm_source_ptr source = (ppm_source_ptr) sinfo;
+-  register JSAMPROW ptr;
+-  register U_CHAR * bufferptr;
+-  register JSAMPLE *rescale = source->rescale;
++  JSAMPROW ptr;
++  U_CHAR * bufferptr;
++  JSAMPLE *rescale = source->rescale;
+   JDIMENSION col;
+ 
+   if (! ReadOK(source->pub.input_file, source->iobuffer, source->buffer_width))
+@@ -250,7 +250,7 @@
+   ptr = source->pub.buffer[0];
+   bufferptr = source->iobuffer;
+   for (col = cinfo->image_width; col > 0; col--) {
+-    register int temp;
++    int temp;
+     temp  = UCH(*bufferptr++) << 8;
+     temp |= UCH(*bufferptr++);
+     *ptr++ = rescale[temp];
+@@ -264,9 +264,9 @@
+ /* This version is for reading raw-word-format PPM files with any maxval */
+ {
+   ppm_source_ptr source = (ppm_source_ptr) sinfo;
+-  register JSAMPROW ptr;
+-  register U_CHAR * bufferptr;
+-  register JSAMPLE *rescale = source->rescale;
++  JSAMPROW ptr;
++  U_CHAR * bufferptr;
++  JSAMPLE *rescale = source->rescale;
+   JDIMENSION col;
+ 
+   if (! ReadOK(source->pub.input_file, source->iobuffer, source->buffer_width))
+@@ -274,7 +274,7 @@
+   ptr = source->pub.buffer[0];
+   bufferptr = source->iobuffer;
+   for (col = cinfo->image_width; col > 0; col--) {
+-    register int temp;
++    int temp;
+     temp  = UCH(*bufferptr++) << 8;
+     temp |= UCH(*bufferptr++);
+     *ptr++ = rescale[temp];
+diff -ur Irrlicht/jpeglib/rdswitch.c Irrlicht/jpeglib/rdswitch.c
+--- Irrlicht/jpeglib/rdswitch.c	2020-08-24 15:43:17.716194956 +0200
++++ Irrlicht/jpeglib/rdswitch.c	2020-08-24 16:42:52.455849421 +0200
+@@ -23,7 +23,7 @@
+ /* Read next char, skipping over any comments (# to end of line) */
+ /* A comment/newline sequence is returned as a newline */
+ {
+-  register int ch;
++  int ch;
+   
+   ch = getc(file);
+   if (ch == '#') {
+@@ -40,8 +40,8 @@
+ /* Read an unsigned decimal integer from a file, store it in result */
+ /* Reads one trailing character after the integer; returns it in termchar */
+ {
+-  register int ch;
+-  register long val;
++  int ch;
++  long val;
+   
+   /* Skip any leading whitespace, detect EOF */
+   do {
+@@ -132,7 +132,7 @@
+  * this simplifies parsing of punctuation in scan scripts.
+  */
+ {
+-  register int ch;
++  int ch;
+ 
+   if (! read_text_integer(file, result, termchar))
+     return FALSE;
+diff -ur Irrlicht/jpeglib/rdtarga.c Irrlicht/jpeglib/rdtarga.c
+--- Irrlicht/jpeglib/rdtarga.c	2020-08-24 15:43:17.719528296 +0200
++++ Irrlicht/jpeglib/rdtarga.c	2020-08-24 16:42:52.459182770 +0200
+@@ -88,8 +88,8 @@
+ read_byte (tga_source_ptr sinfo)
+ /* Read next byte from Targa file */
+ {
+-  register FILE *infile = sinfo->pub.input_file;
+-  register int c;
++  FILE *infile = sinfo->pub.input_file;
++  int c;
+ 
+   if ((c = getc(infile)) == EOF)
+     ERREXIT(sinfo->cinfo, JERR_INPUT_EOF);
+@@ -123,8 +123,8 @@
+ read_non_rle_pixel (tga_source_ptr sinfo)
+ /* Read one Targa pixel from the input file; no RLE expansion */
+ {
+-  register FILE *infile = sinfo->pub.input_file;
+-  register int i;
++  FILE *infile = sinfo->pub.input_file;
++  int i;
+ 
+   for (i = 0; i < sinfo->pixel_size; i++) {
+     sinfo->tga_pixel[i] = (U_CHAR) getc(infile);
+@@ -136,8 +136,8 @@
+ read_rle_pixel (tga_source_ptr sinfo)
+ /* Read one Targa pixel from the input file, expanding RLE data as needed */
+ {
+-  register FILE *infile = sinfo->pub.input_file;
+-  register int i;
++  FILE *infile = sinfo->pub.input_file;
++  int i;
+ 
+   /* Duplicate previously read pixel? */
+   if (sinfo->dup_pixel_count > 0) {
+@@ -175,8 +175,8 @@
+ /* This version is for reading 8-bit grayscale pixels */
+ {
+   tga_source_ptr source = (tga_source_ptr) sinfo;
+-  register JSAMPROW ptr;
+-  register JDIMENSION col;
++  JSAMPROW ptr;
++  JDIMENSION col;
+   
+   ptr = source->pub.buffer[0];
+   for (col = cinfo->image_width; col > 0; col--) {
+@@ -191,10 +191,10 @@
+ /* This version is for reading 8-bit colormap indexes */
+ {
+   tga_source_ptr source = (tga_source_ptr) sinfo;
+-  register int t;
+-  register JSAMPROW ptr;
+-  register JDIMENSION col;
+-  register JSAMPARRAY colormap = source->colormap;
++  int t;
++  JSAMPROW ptr;
++  JDIMENSION col;
++  JSAMPARRAY colormap = source->colormap;
+ 
+   ptr = source->pub.buffer[0];
+   for (col = cinfo->image_width; col > 0; col--) {
+@@ -212,9 +212,9 @@
+ /* This version is for reading 16-bit pixels */
+ {
+   tga_source_ptr source = (tga_source_ptr) sinfo;
+-  register int t;
+-  register JSAMPROW ptr;
+-  register JDIMENSION col;
++  int t;
++  JSAMPROW ptr;
++  JDIMENSION col;
+   
+   ptr = source->pub.buffer[0];
+   for (col = cinfo->image_width; col > 0; col--) {
+@@ -240,8 +240,8 @@
+ /* This version is for reading 24-bit pixels */
+ {
+   tga_source_ptr source = (tga_source_ptr) sinfo;
+-  register JSAMPROW ptr;
+-  register JDIMENSION col;
++  JSAMPROW ptr;
++  JDIMENSION col;
+   
+   ptr = source->pub.buffer[0];
+   for (col = cinfo->image_width; col > 0; col--) {
+diff -ur Irrlicht/jpeglib/wrbmp.c Irrlicht/jpeglib/wrbmp.c
+--- Irrlicht/jpeglib/wrbmp.c	2020-08-24 15:43:17.719528296 +0200
++++ Irrlicht/jpeglib/wrbmp.c	2020-08-24 16:42:52.432515971 +0200
+@@ -74,8 +74,8 @@
+ {
+   bmp_dest_ptr dest = (bmp_dest_ptr) dinfo;
+   JSAMPARRAY image_ptr;
+-  register JSAMPROW inptr, outptr;
+-  register JDIMENSION col;
++  JSAMPROW inptr, outptr;
++  JDIMENSION col;
+   int pad;
+ 
+   /* Access next row in virtual array */
+@@ -109,8 +109,8 @@
+ {
+   bmp_dest_ptr dest = (bmp_dest_ptr) dinfo;
+   JSAMPARRAY image_ptr;
+-  register JSAMPROW inptr, outptr;
+-  register JDIMENSION col;
++  JSAMPROW inptr, outptr;
++  JDIMENSION col;
+   int pad;
+ 
+   /* Access next row in virtual array */
+@@ -344,11 +344,11 @@
+ finish_output_bmp (j_decompress_ptr cinfo, djpeg_dest_ptr dinfo)
+ {
+   bmp_dest_ptr dest = (bmp_dest_ptr) dinfo;
+-  register FILE * outfile = dest->pub.output_file;
++  FILE * outfile = dest->pub.output_file;
+   JSAMPARRAY image_ptr;
+-  register JSAMPROW data_ptr;
++  JSAMPROW data_ptr;
+   JDIMENSION row;
+-  register JDIMENSION col;
++  JDIMENSION col;
+   cd_progress_ptr progress = (cd_progress_ptr) cinfo->progress;
+ 
+   /* Write the header and colormap */
+diff -ur Irrlicht/jpeglib/wrgif.c Irrlicht/jpeglib/wrgif.c
+--- Irrlicht/jpeglib/wrgif.c	2020-08-24 15:43:17.719528296 +0200
++++ Irrlicht/jpeglib/wrgif.c	2020-08-24 16:42:52.442516022 +0200
+@@ -320,8 +320,8 @@
+ 		JDIMENSION rows_supplied)
+ {
+   gif_dest_ptr dest = (gif_dest_ptr) dinfo;
+-  register JSAMPROW ptr;
+-  register JDIMENSION col;
++  JSAMPROW ptr;
++  JDIMENSION col;
+ 
+   ptr = dest->pub.buffer[0];
+   for (col = cinfo->output_width; col > 0; col--) {
+diff -ur Irrlicht/jpeglib/wrjpgcom.c Irrlicht/jpeglib/wrjpgcom.c
+--- Irrlicht/jpeglib/wrjpgcom.c	2020-08-24 15:43:17.719528296 +0200
++++ Irrlicht/jpeglib/wrjpgcom.c	2020-08-24 16:42:52.249181730 +0200
+@@ -386,8 +386,8 @@
+ /* keyword is the constant keyword (must be lower case already), */
+ /* minchars is length of minimum legal abbreviation. */
+ {
+-  register int ca, ck;
+-  register int nmatched = 0;
++  int ca, ck;
++  int nmatched = 0;
+ 
+   while ((ca = *arg++) != '\0') {
+     if ((ck = *keyword++) == '\0')
+diff -ur Irrlicht/jpeglib/wrppm.c Irrlicht/jpeglib/wrppm.c
+--- Irrlicht/jpeglib/wrppm.c	2020-08-24 15:43:17.719528296 +0200
++++ Irrlicht/jpeglib/wrppm.c	2020-08-24 16:42:52.309182027 +0200
+@@ -43,7 +43,7 @@
+ #else
+ /* The word-per-sample format always puts the MSB first. */
+ #define PUTPPMSAMPLE(ptr,v)			\
+-	{ register int val_ = v;		\
++	{ int val_ = v;		\
+ 	  *ptr++ = (char) ((val_ >> 8) & 0xFF);	\
+ 	  *ptr++ = (char) (val_ & 0xFF);	\
+ 	}
+@@ -107,9 +107,9 @@
+ 		 JDIMENSION rows_supplied)
+ {
+   ppm_dest_ptr dest = (ppm_dest_ptr) dinfo;
+-  register char * bufferptr;
+-  register JSAMPROW ptr;
+-  register JDIMENSION col;
++  char * bufferptr;
++  JSAMPROW ptr;
++  JDIMENSION col;
+ 
+   ptr = dest->pub.buffer[0];
+   bufferptr = dest->iobuffer;
+@@ -130,13 +130,13 @@
+ 		  JDIMENSION rows_supplied)
+ {
+   ppm_dest_ptr dest = (ppm_dest_ptr) dinfo;
+-  register char * bufferptr;
+-  register int pixval;
+-  register JSAMPROW ptr;
+-  register JSAMPROW color_map0 = cinfo->colormap[0];
+-  register JSAMPROW color_map1 = cinfo->colormap[1];
+-  register JSAMPROW color_map2 = cinfo->colormap[2];
+-  register JDIMENSION col;
++  char * bufferptr;
++  int pixval;
++  JSAMPROW ptr;
++  JSAMPROW color_map0 = cinfo->colormap[0];
++  JSAMPROW color_map1 = cinfo->colormap[1];
++  JSAMPROW color_map2 = cinfo->colormap[2];
++  JDIMENSION col;
+ 
+   ptr = dest->pub.buffer[0];
+   bufferptr = dest->iobuffer;
+@@ -155,10 +155,10 @@
+ 		   JDIMENSION rows_supplied)
+ {
+   ppm_dest_ptr dest = (ppm_dest_ptr) dinfo;
+-  register char * bufferptr;
+-  register JSAMPROW ptr;
+-  register JSAMPROW color_map = cinfo->colormap[0];
+-  register JDIMENSION col;
++  char * bufferptr;
++  JSAMPROW ptr;
++  JSAMPROW color_map = cinfo->colormap[0];
++  JDIMENSION col;
+ 
+   ptr = dest->pub.buffer[0];
+   bufferptr = dest->iobuffer;
+diff -ur Irrlicht/jpeglib/wrtarga.c Irrlicht/jpeglib/wrtarga.c
+--- Irrlicht/jpeglib/wrtarga.c	2020-08-24 15:43:17.722861636 +0200
++++ Irrlicht/jpeglib/wrtarga.c	2020-08-24 16:42:52.272515179 +0200
+@@ -101,9 +101,9 @@
+ /* used for unquantized full-color output */
+ {
+   tga_dest_ptr dest = (tga_dest_ptr) dinfo;
+-  register JSAMPROW inptr;
+-  register char * outptr;
+-  register JDIMENSION col;
++  JSAMPROW inptr;
++  char * outptr;
++  JDIMENSION col;
+ 
+   inptr = dest->pub.buffer[0];
+   outptr = dest->iobuffer;
+@@ -122,9 +122,9 @@
+ /* used for grayscale OR quantized color output */
+ {
+   tga_dest_ptr dest = (tga_dest_ptr) dinfo;
+-  register JSAMPROW inptr;
+-  register char * outptr;
+-  register JDIMENSION col;
++  JSAMPROW inptr;
++  char * outptr;
++  JDIMENSION col;
+ 
+   inptr = dest->pub.buffer[0];
+   outptr = dest->iobuffer;
+@@ -145,10 +145,10 @@
+ 		   JDIMENSION rows_supplied)
+ {
+   tga_dest_ptr dest = (tga_dest_ptr) dinfo;
+-  register JSAMPROW inptr;
+-  register char * outptr;
+-  register JSAMPROW color_map0 = cinfo->colormap[0];
+-  register JDIMENSION col;
++  JSAMPROW inptr;
++  char * outptr;
++  JSAMPROW color_map0 = cinfo->colormap[0];
++  JDIMENSION col;
+ 
+   inptr = dest->pub.buffer[0];
+   outptr = dest->iobuffer;
+diff -ur Irrlicht/zlib/crc32.c Irrlicht/zlib/crc32.c
+--- Irrlicht/zlib/crc32.c	2020-08-24 15:43:17.739528337 +0200
++++ Irrlicht/zlib/crc32.c	2020-08-24 16:42:52.385849073 +0200
+@@ -249,8 +249,8 @@
+     const unsigned char FAR *buf;
+     unsigned len;
+ {
+-    register z_crc_t c;
+-    register const z_crc_t FAR *buf4;
++    z_crc_t c;
++    const z_crc_t FAR *buf4;
+ 
+     c = (z_crc_t)crc;
+     c = ~c;
+@@ -289,8 +289,8 @@
+     const unsigned char FAR *buf;
+     unsigned len;
+ {
+-    register z_crc_t c;
+-    register const z_crc_t FAR *buf4;
++    z_crc_t c;
++    const z_crc_t FAR *buf4;
+ 
+     c = ZSWAP32((z_crc_t)crc);
+     c = ~c;
+diff -ur Irrlicht/zlib/deflate.c Irrlicht/zlib/deflate.c
+--- Irrlicht/zlib/deflate.c	2020-08-24 15:43:17.739528337 +0200
++++ Irrlicht/zlib/deflate.c	2020-08-24 16:42:52.319182077 +0200
+@@ -1150,9 +1150,9 @@
+     IPos cur_match;                             /* current match */
+ {
+     unsigned chain_length = s->max_chain_length;/* max hash chain length */
+-    register Bytef *scan = s->window + s->strstart; /* current string */
+-    register Bytef *match;                       /* matched string */
+-    register int len;                           /* length of current match */
++    Bytef *scan = s->window + s->strstart; /* current string */
++    Bytef *match;                       /* matched string */
++    int len;                           /* length of current match */
+     int best_len = s->prev_length;              /* best match length so far */
+     int nice_match = s->nice_match;             /* stop if match long enough */
+     IPos limit = s->strstart > (IPos)MAX_DIST(s) ?
+@@ -1167,13 +1167,13 @@
+     /* Compare two bytes at a time. Note: this is not always beneficial.
+      * Try with and without -DUNALIGNED_OK to check.
+      */
+-    register Bytef *strend = s->window + s->strstart + MAX_MATCH - 1;
+-    register ush scan_start = *(ushf*)scan;
+-    register ush scan_end   = *(ushf*)(scan+best_len-1);
++    Bytef *strend = s->window + s->strstart + MAX_MATCH - 1;
++    ush scan_start = *(ushf*)scan;
++    ush scan_end   = *(ushf*)(scan+best_len-1);
+ #else
+-    register Bytef *strend = s->window + s->strstart + MAX_MATCH;
+-    register Byte scan_end1  = scan[best_len-1];
+-    register Byte scan_end   = scan[best_len];
++    Bytef *strend = s->window + s->strstart + MAX_MATCH;
++    Byte scan_end1  = scan[best_len-1];
++    Byte scan_end   = scan[best_len];
+ #endif
+ 
+     /* The code is optimized for HASH_BITS >= 8 and MAX_MATCH-2 multiple of 16.
+@@ -1298,10 +1298,10 @@
+     deflate_state *s;
+     IPos cur_match;                             /* current match */
+ {
+-    register Bytef *scan = s->window + s->strstart; /* current string */
+-    register Bytef *match;                       /* matched string */
+-    register int len;                           /* length of current match */
+-    register Bytef *strend = s->window + s->strstart + MAX_MATCH;
++    Bytef *scan = s->window + s->strstart; /* current string */
++    Bytef *match;                       /* matched string */
++    int len;                           /* length of current match */
++    Bytef *strend = s->window + s->strstart + MAX_MATCH;
+ 
+     /* The code is optimized for HASH_BITS >= 8 and MAX_MATCH-2 multiple of 16.
+      * It is easy to get rid of this optimization if necessary.
+@@ -1390,8 +1390,8 @@
+ local void fill_window(s)
+     deflate_state *s;
+ {
+-    register unsigned n, m;
+-    register Posf *p;
++    unsigned n, m;
++    Posf *p;
+     unsigned more;    /* Amount of free space at the end of the window. */
+     uInt wsize = s->w_size;
+ 
+diff -ur Irrlicht/zlib/trees.c Irrlicht/zlib/trees.c
+--- Irrlicht/zlib/trees.c	2020-08-24 15:43:17.742861677 +0200
++++ Irrlicht/zlib/trees.c	2020-08-24 16:42:52.425849272 +0200
+@@ -1155,7 +1155,7 @@
+     unsigned code; /* the value to invert */
+     int len;       /* its bit length */
+ {
+-    register unsigned res = 0;
++    unsigned res = 0;
+     do {
+         res |= code & 1;
+         code >>= 1, res <<= 1;

@@ -6,13 +6,14 @@ class IrrlichtConan(ConanFile):
     name = "irrlicht"
     version = "1.8.4"
     license = "http://irrlicht.sourceforge.net/?page_id=294"
-    url = "https://github.com/mpusz/conan-irrlicht"
+    url = "https://github.com/jellespijker/conan-irrlicht"
     description = "An open source high performance realtime 3D engine written in C++"
     exports = "LICENSE.md"
     exports_sources = ["*.patch"]
     settings = "os", "compiler", "build_type", "arch"
     options = {"shared": [True, False], "fPIC": [True, False]}
     default_options = {"shared": False, "fPIC": True}
+    requires = ["mesa/20.0.1@bincrafters/stable", "libxcursor/1.2.0@bincrafters/stable", "libpng/1.6.37"]
 
     @property
     def _subfolder(self):
@@ -26,30 +27,13 @@ class IrrlichtConan(ConanFile):
         zip_name = "irrlicht-%s.zip" % self.version
         tools.get("http://downloads.sourceforge.net/irrlicht/%s" % zip_name, sha1="38bf0223fe868d243d6a39d0dc191c8df6e03b3b")
 
-    def system_requirements(self):
-#        if self.settings.os == "Macos":
-#            self.run("brew cask install xquartz")
-
-        if self.settings.os == "Linux" and tools.os_info.is_linux:
-            installer = tools.SystemPackageTool()
-            if tools.os_info.with_apt:
-                if self.settings.arch == "x86":
-                    arch_suffix = ':i386'
-                elif self.settings.arch == "x86_64":
-                    arch_suffix = ':amd64'
-                packages = ['libgl1-mesa-dev%s' % arch_suffix]
-                packages.append('libxcursor-dev%s' % arch_suffix)
-
-            if tools.os_info.with_yum:
-                if self.settings.arch == "x86":
-                    arch_suffix = '.i686'
-                elif self.settings.arch == 'x86_64':
-                    arch_suffix = '.x86_64'
-                packages = ['mesa-libGL-devel%s' % arch_suffix]
-                packages.append('libXcursor-devel%s' % arch_suffix)
-
-            for package in packages:
-                installer.install(package)
+    def _patch_cxx17(self):
+        # patch_base = "{}/{}/source/".format(self.build_folder, self._subfolder)
+        # tools.patch(base_path=patch_base, patch_file=os.path.join(self.source_folder, "cxx_17.patch"))
+        tools.replace_in_file("Makefile", "CPPFLAGS += $(CXXINCS) -DIRRLICHT_EXPORTS=1", "CPPFLAGS += $(CXXINCS) -DIRRLICHT_EXPORTS=1 -U__STRICT_ANSI__")
+        tools.replace_in_file("Makefile", "CXXFLAGS += -Wall -pipe -fno-exceptions -fno-rtti -fstrict-aliasing", "CXXFLAGS += -Wall -pipe -fno-exceptions -fno-rtti -fstrict-aliasing -Wno-register -Wignored-optimization-argument")
+        tools.replace_in_file("Makefile", "CXXFLAGS += -fexpensive-optimizations -O3", "CXXFLAGS += -O3")
+        tools.replace_in_file("Makefile", "CXXFLAGS += -fexpensive-optimizations -O3", "CXXFLAGS += -O3")
 
     def _patch_add_shared_lib_links(self):
         # Irrlicht does that only for install step and without the links create Conan does not link correctly
@@ -102,6 +86,8 @@ class IrrlichtConan(ConanFile):
                     self._patch_linux()
                     make_target = "sharedlib" if self.options.shared else "staticlib"
 
+                if self.settings.compiler.cppstd in ["17", "gnu17", "20", "gnu20"]:
+                    self._patch_cxx17()
                 autotools.make(target=make_target)
 
     def package(self):
